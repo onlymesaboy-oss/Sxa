@@ -1,0 +1,5 @@
+{
+  "name": "AI Football Predictor",
+  "description": "A modern football prediction tool powered by AI, providing insights on scores, goals, handicaps, and more.",
+  "requestFramePermissions": []
+}

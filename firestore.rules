@@ -1,0 +1,119 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Document ID: {userId}
+    // Fields:
+    //   - uid: string (required, immutable) - The unique ID of the user.
+    //   - displayName: string (optional) - The display name of the user.
+    //   - email: string (required, immutable) - The email address of the user.
+    //   - photoURL: string (optional) - The URL of the user's profile photo.
+    //   - role: string (required, enum: ['user', 'admin', 'analyst', 'editor']) - The role of the user.
+    //   - createdAt: timestamp (required, immutable) - When the user profile was created.
+    //
+    // Collection: prediction_history
+    // Document ID: {predictionId}
+    // Fields:
+    //   - uid: string (required, immutable) - The unique ID of the user who made the prediction.
+    //   - matchId: string (required, immutable) - The ID of the match.
+    //   - homeTeam: string (required, immutable) - The name of the home team.
+    //   - awayTeam: string (required, immutable) - The name of the away team.
+    //   - homeLogo: string (required, immutable) - The logo URL of the home team.
+    //   - awayLogo: string (required, immutable) - The logo URL of the away team.
+    //   - correctScore: string (required, immutable) - The predicted correct score.
+    //   - confidence: number (required, immutable) - The confidence level of the prediction.
+    //   - createdAt: timestamp (required, immutable) - When the prediction was made.
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.uid;
+    }
+
+    function uidUnchanged() {
+      return !('uid' in request.resource.data) || request.resource.data.uid == request.auth.uid;
+    }
+
+    function uidNotModified() {
+      return !('uid' in request.resource.data) || request.resource.data.uid == resource.data.uid;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "onlymesaboy@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isAnalyst() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'analyst';
+    }
+
+    function isEditor() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'editor';
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'role', 'createdAt']) &&
+             data.keys().hasOnly(['uid', 'displayName', 'email', 'photoURL', 'role', 'createdAt']) &&
+             data.uid is string && data.uid.size() > 0 && data.uid.size() < 128 &&
+             isValidEmail(data.email) &&
+             data.role in ['user', 'admin', 'analyst', 'editor'] &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidPrediction(data) {
+      return data.keys().hasAll(['uid', 'matchId', 'homeTeam', 'awayTeam', 'homeLogo', 'awayLogo', 'correctScore', 'confidence', 'createdAt']) &&
+             data.keys().hasOnly(['uid', 'matchId', 'homeTeam', 'awayTeam', 'homeLogo', 'awayLogo', 'correctScore', 'confidence', 'createdAt']) &&
+             data.uid is string && data.uid == request.auth.uid &&
+             data.matchId is string && data.matchId.size() > 0 && data.matchId.size() < 128 &&
+             data.homeTeam is string && data.homeTeam.size() > 0 && data.homeTeam.size() < 128 &&
+             data.awayTeam is string && data.awayTeam.size() > 0 && data.awayTeam.size() < 128 &&
+             data.homeLogo is string && data.homeLogo.size() > 0 && data.homeLogo.size() < 512 &&
+             data.awayLogo is string && data.awayLogo.size() > 0 && data.awayLogo.size() < 512 &&
+             data.correctScore is string && data.correctScore.size() > 0 && data.correctScore.size() < 10 &&
+             data.confidence is number && data.confidence >= 0 && data.confidence <= 100 &&
+             data.createdAt is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin() || isAnalyst() || isEditor();
+      allow create: if (isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.role == 'user') || isAdmin();
+      allow update: if (isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.role == resource.data.role && uidNotModified()) || isAdmin();
+    }
+
+    match /prediction_history/{predictionId} {
+      allow read: if isAdmin() || isAnalyst();
+      allow create: if isAuthenticated() && isValidPrediction(request.resource.data);
+      allow update: if false; // Predictions are immutable
+      allow delete: if isAdmin();
+    }
+
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}

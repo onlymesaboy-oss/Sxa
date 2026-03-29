@@ -1,0 +1,103 @@
+import { Team, League } from './types';
+
+export const LEAGUES: League[] = [
+  { id: 'pl', name: 'Premier League', country: 'England', logo: 'https://media.api-sports.io/football/leagues/39.png' },
+  { id: 'laliga', name: 'La Liga', country: 'Spain', logo: 'https://media.api-sports.io/football/leagues/140.png' },
+  { id: 'seriea', name: 'Serie A', country: 'Italy', logo: 'https://media.api-sports.io/football/leagues/135.png' },
+  { id: 'bundesliga', name: 'Bundesliga', country: 'Germany', logo: 'https://media.api-sports.io/football/leagues/78.png' },
+  { id: 'ligue1', name: 'Ligue 1', country: 'France', logo: 'https://media.api-sports.io/football/leagues/61.png' },
+  { id: 'ucl', name: 'Champions League', country: 'Europe', logo: 'https://media.api-sports.io/football/leagues/2.png' },
+  { id: 'mls', name: 'MLS', country: 'USA', logo: 'https://media.api-sports.io/football/leagues/253.png' },
+  { id: 'saudi', name: 'Saudi Pro League', country: 'Saudi Arabia', logo: 'https://media.api-sports.io/football/leagues/307.png' },
+  { id: 'cambodia', name: 'Cambodian Premier League', country: 'Cambodia', logo: 'https://media.api-sports.io/football/leagues/445.png' },
+  { id: 'eredivisie', name: 'Eredivisie', country: 'Netherlands', logo: 'https://media.api-sports.io/football/leagues/88.png' },
+  { id: 'portugal', name: 'Primeira Liga', country: 'Portugal', logo: 'https://media.api-sports.io/football/leagues/94.png' },
+  { id: 'custom', name: 'Custom Match (Any Team)', country: 'World', logo: 'https://media.api-sports.io/football/leagues/1.png' },
+];
+
+export const TEAMS: Record<string, Team[]> = {
+  pl: [
+    { id: '1', name: 'Manchester City', logo: 'https://media.api-sports.io/football/teams/50.png', form: ['W', 'W', 'D', 'W', 'W'], goalsScored: 72, goalsConceded: 32 },
+    { id: '2', name: 'Arsenal', logo: 'https://media.api-sports.io/football/teams/42.png', form: ['W', 'W', 'W', 'W', 'L'], goalsScored: 70, goalsConceded: 24 },
+    { id: '3', name: 'Liverpool', logo: 'https://media.api-sports.io/football/teams/40.png', form: ['D', 'W', 'W', 'L', 'W'], goalsScored: 68, goalsConceded: 30 },
+    { id: '4', name: 'Manchester United', logo: 'https://media.api-sports.io/football/teams/33.png', form: ['L', 'W', 'L', 'L', 'W'], goalsScored: 45, goalsConceded: 48 },
+    { id: '11', name: 'Chelsea', logo: 'https://media.api-sports.io/football/teams/49.png', form: ['W', 'D', 'W', 'L', 'D'], goalsScored: 52, goalsConceded: 50 },
+    { id: '12', name: 'Tottenham', logo: 'https://media.api-sports.io/football/teams/47.png', form: ['L', 'W', 'L', 'W', 'W'], goalsScored: 62, goalsConceded: 49 },
+    { id: '13', name: 'Aston Villa', logo: 'https://media.api-sports.io/football/teams/66.png', form: ['W', 'L', 'D', 'W', 'W'], goalsScored: 66, goalsConceded: 49 },
+    { id: '14', name: 'Newcastle', logo: 'https://media.api-sports.io/football/teams/34.png', form: ['W', 'W', 'L', 'W', 'D'], goalsScored: 69, goalsConceded: 52 },
+    { id: '42', name: 'West Ham', logo: 'https://media.api-sports.io/football/teams/48.png', form: ['D', 'L', 'W', 'W', 'L'], goalsScored: 48, goalsConceded: 56 },
+    { id: '43', name: 'Brighton', logo: 'https://media.api-sports.io/football/teams/51.png', form: ['W', 'L', 'L', 'L', 'W'], goalsScored: 50, goalsConceded: 44 },
+  ],
+  laliga: [
+    { id: '5', name: 'Real Madrid', logo: 'https://media.api-sports.io/football/teams/541.png', form: ['W', 'W', 'W', 'D', 'W'], goalsScored: 66, goalsConceded: 20 },
+    { id: '6', name: 'Barcelona', logo: 'https://media.api-sports.io/football/teams/529.png', form: ['W', 'W', 'D', 'W', 'W'], goalsScored: 61, goalsConceded: 34 },
+    { id: '7', name: 'Atletico Madrid', logo: 'https://media.api-sports.io/football/teams/530.png', form: ['L', 'W', 'L', 'W', 'L'], goalsScored: 54, goalsConceded: 36 },
+    { id: '15', name: 'Girona', logo: 'https://media.api-sports.io/football/teams/547.png', form: ['W', 'L', 'W', 'L', 'W'], goalsScored: 63, goalsConceded: 34 },
+    { id: '16', name: 'Athletic Club', logo: 'https://media.api-sports.io/football/teams/531.png', form: ['W', 'D', 'W', 'L', 'W'], goalsScored: 50, goalsConceded: 28 },
+    { id: '17', name: 'Real Sociedad', logo: 'https://media.api-sports.io/football/teams/548.png', form: ['W', 'W', 'L', 'L', 'L'], goalsScored: 43, goalsConceded: 31 },
+    { id: '44', name: 'Real Betis', logo: 'https://media.api-sports.io/football/teams/543.png', form: ['L', 'L', 'L', 'W', 'D'], goalsScored: 34, goalsConceded: 33 },
+    { id: '45', name: 'Valencia', logo: 'https://media.api-sports.io/football/teams/532.png', form: ['D', 'W', 'D', 'L', 'D'], goalsScored: 32, goalsConceded: 32 },
+  ],
+  seriea: [
+    { id: '8', name: 'Inter Milan', logo: 'https://media.api-sports.io/football/teams/505.png', form: ['W', 'W', 'W', 'W', 'W'], goalsScored: 70, goalsConceded: 13 },
+    { id: '9', name: 'Juventus', logo: 'https://media.api-sports.io/football/teams/496.png', form: ['D', 'L', 'D', 'W', 'L'], goalsScored: 43, goalsConceded: 23 },
+    { id: '10', name: 'AC Milan', logo: 'https://media.api-sports.io/football/teams/489.png', form: ['W', 'W', 'D', 'L', 'W'], goalsScored: 55, goalsConceded: 32 },
+    { id: '18', name: 'AS Roma', logo: 'https://media.api-sports.io/football/teams/497.png', form: ['W', 'D', 'W', 'W', 'W'], goalsScored: 54, goalsConceded: 35 },
+    { id: '19', name: 'Napoli', logo: 'https://media.api-sports.io/football/teams/492.png', form: ['D', 'W', 'W', 'D', 'D'], goalsScored: 43, goalsConceded: 32 },
+    { id: '20', name: 'Lazio', logo: 'https://media.api-sports.io/football/teams/487.png', form: ['L', 'L', 'L', 'W', 'L'], goalsScored: 33, goalsConceded: 31 },
+    { id: '46', name: 'Atalanta', logo: 'https://media.api-sports.io/football/teams/499.png', form: ['L', 'D', 'L', 'D', 'W'], goalsScored: 51, goalsConceded: 32 },
+    { id: '47', name: 'Fiorentina', logo: 'https://media.api-sports.io/football/teams/502.png', form: ['D', 'D', 'W', 'D', 'L'], goalsScored: 41, goalsConceded: 32 },
+  ],
+  bundesliga: [
+    { id: '21', name: 'Bayer Leverkusen', logo: 'https://media.api-sports.io/football/teams/168.png', form: ['W', 'W', 'W', 'W', 'W'], goalsScored: 66, goalsConceded: 18 },
+    { id: '22', name: 'Bayern Munich', logo: 'https://media.api-sports.io/football/teams/157.png', form: ['W', 'W', 'D', 'L', 'W'], goalsScored: 78, goalsConceded: 33 },
+    { id: '23', name: 'Borussia Dortmund', logo: 'https://media.api-sports.io/football/teams/165.png', form: ['W', 'W', 'W', 'L', 'D'], goalsScored: 53, goalsConceded: 32 },
+    { id: '24', name: 'RB Leipzig', logo: 'https://media.api-sports.io/football/teams/173.png', form: ['W', 'W', 'L', 'W', 'W'], goalsScored: 60, goalsConceded: 32 },
+    { id: '25', name: 'Stuttgart', logo: 'https://media.api-sports.io/football/teams/172.png', form: ['W', 'W', 'W', 'D', 'W'], goalsScored: 64, goalsConceded: 34 },
+    { id: '48', name: 'Eintracht Frankfurt', logo: 'https://media.api-sports.io/football/teams/169.png', form: ['L', 'W', 'W', 'D', 'D'], goalsScored: 43, goalsConceded: 35 },
+  ],
+  ligue1: [
+    { id: '26', name: 'Paris Saint Germain', logo: 'https://media.api-sports.io/football/teams/85.png', form: ['W', 'D', 'D', 'D', 'W'], goalsScored: 62, goalsConceded: 23 },
+    { id: '27', name: 'Monaco', logo: 'https://media.api-sports.io/football/teams/91.png', form: ['D', 'W', 'D', 'W', 'L'], goalsScored: 52, goalsConceded: 38 },
+    { id: '28', name: 'Brest', logo: 'https://media.api-sports.io/football/teams/106.png', form: ['L', 'W', 'W', 'W', 'D'], goalsScored: 36, goalsConceded: 20 },
+    { id: '29', name: 'Lille', logo: 'https://media.api-sports.io/football/teams/79.png', form: ['D', 'D', 'W', 'L', 'W'], goalsScored: 42, goalsConceded: 25 },
+    { id: '30', name: 'Marseille', logo: 'https://media.api-sports.io/football/teams/81.png', form: ['L', 'W', 'W', 'W', 'W'], goalsScored: 40, goalsConceded: 28 },
+    { id: '49', name: 'Lens', logo: 'https://media.api-sports.io/football/teams/116.png', form: ['L', 'W', 'W', 'L', 'D'], goalsScored: 35, goalsConceded: 27 },
+    { id: '50', name: 'Nice', logo: 'https://media.api-sports.io/football/teams/84.png', form: ['W', 'L', 'L', 'D', 'L'], goalsScored: 31, goalsConceded: 20 },
+  ],
+  eredivisie: [
+    { id: '51', name: 'PSV Eindhoven', logo: 'https://media.api-sports.io/football/teams/197.png', form: ['W', 'W', 'D', 'W', 'W'], goalsScored: 80, goalsConceded: 13 },
+    { id: '52', name: 'Feyenoord', logo: 'https://media.api-sports.io/football/teams/194.png', form: ['W', 'W', 'W', 'D', 'W'], goalsScored: 70, goalsConceded: 23 },
+    { id: '53', name: 'Ajax', logo: 'https://media.api-sports.io/football/teams/194.png', form: ['D', 'D', 'W', 'L', 'W'], goalsScored: 60, goalsConceded: 45 },
+    { id: '54', name: 'AZ Alkmaar', logo: 'https://media.api-sports.io/football/teams/201.png', form: ['W', 'W', 'W', 'D', 'W'], goalsScored: 55, goalsConceded: 25 },
+  ],
+  portugal: [
+    { id: '55', name: 'Sporting CP', logo: 'https://media.api-sports.io/football/teams/228.png', form: ['W', 'W', 'W', 'D', 'W'], goalsScored: 75, goalsConceded: 25 },
+    { id: '56', name: 'Benfica', logo: 'https://media.api-sports.io/football/teams/211.png', form: ['W', 'W', 'L', 'W', 'W'], goalsScored: 65, goalsConceded: 21 },
+    { id: '57', name: 'FC Porto', logo: 'https://media.api-sports.io/football/teams/212.png', form: ['W', 'L', 'W', 'W', 'D'], goalsScored: 50, goalsConceded: 18 },
+    { id: '58', name: 'Braga', logo: 'https://media.api-sports.io/football/teams/217.png', form: ['W', 'D', 'W', 'W', 'W'], goalsScored: 55, goalsConceded: 33 },
+  ],
+  mls: [
+    { id: '31', name: 'Inter Miami', logo: 'https://media.api-sports.io/football/teams/9568.png', form: ['W', 'W', 'D', 'W', 'W'], goalsScored: 15, goalsConceded: 5 },
+    { id: '32', name: 'LA Galaxy', logo: 'https://media.api-sports.io/football/teams/1602.png', form: ['W', 'D', 'D', 'W', 'W'], goalsScored: 12, goalsConceded: 7 },
+    { id: '33', name: 'Columbus Crew', logo: 'https://media.api-sports.io/football/teams/1615.png', form: ['D', 'W', 'W', 'D', 'W'], goalsScored: 10, goalsConceded: 4 },
+  ],
+  saudi: [
+    { id: '34', name: 'Al Nassr', logo: 'https://media.api-sports.io/football/teams/2939.png', form: ['W', 'L', 'D', 'W', 'W'], goalsScored: 70, goalsConceded: 34 },
+    { id: '35', name: 'Al Hilal', logo: 'https://media.api-sports.io/football/teams/2930.png', form: ['W', 'W', 'W', 'W', 'W'], goalsScored: 80, goalsConceded: 15 },
+    { id: '36', name: 'Al Ittihad', logo: 'https://media.api-sports.io/football/teams/2931.png', form: ['W', 'W', 'L', 'W', 'W'], goalsScored: 55, goalsConceded: 35 },
+    { id: '37', name: 'Al Ahli', logo: 'https://media.api-sports.io/football/teams/2934.png', form: ['D', 'W', 'L', 'W', 'D'], goalsScored: 50, goalsConceded: 25 },
+  ],
+  cambodia: [
+    { id: '38', name: 'Preah Khan Reach Svay Rieng', logo: 'https://media.api-sports.io/football/teams/4183.png', form: ['W', 'W', 'W', 'W', 'W'], goalsScored: 65, goalsConceded: 15 },
+    { id: '39', name: 'Phnom Penh Crown', logo: 'https://media.api-sports.io/football/teams/4181.png', form: ['W', 'W', 'D', 'W', 'W'], goalsScored: 55, goalsConceded: 20 },
+    { id: '40', name: 'Visakha', logo: 'https://media.api-sports.io/football/teams/11267.png', form: ['W', 'L', 'W', 'W', 'L'], goalsScored: 45, goalsConceded: 25 },
+    { id: '41', name: 'Boeung Ket', logo: 'https://media.api-sports.io/football/teams/4180.png', form: ['D', 'W', 'L', 'W', 'D'], goalsScored: 40, goalsConceded: 30 },
+  ],
+  ucl: [
+    { id: '1', name: 'Manchester City', logo: 'https://media.api-sports.io/football/teams/50.png', form: ['W', 'W', 'D', 'W', 'W'], goalsScored: 72, goalsConceded: 32 },
+    { id: '5', name: 'Real Madrid', logo: 'https://media.api-sports.io/football/teams/541.png', form: ['W', 'W', 'W', 'D', 'W'], goalsScored: 66, goalsConceded: 20 },
+    { id: '22', name: 'Bayern Munich', logo: 'https://media.api-sports.io/football/teams/157.png', form: ['W', 'W', 'D', 'L', 'W'], goalsScored: 78, goalsConceded: 33 },
+    { id: '26', name: 'Paris Saint Germain', logo: 'https://media.api-sports.io/football/teams/85.png', form: ['W', 'D', 'D', 'D', 'W'], goalsScored: 62, goalsConceded: 23 },
+  ]
+};
